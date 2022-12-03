@@ -8,6 +8,7 @@ require('./models/db');
 const userRouter = require('./routes/customer')
 const flightsRouter = require('./routes/flighttransaction')
 const bookingRouter = require('./routes/booking')
+const adminRouter = require('./routes/admin')
 
 const app = express()
 app.use(logger('dev')); 
@@ -36,8 +37,16 @@ app.use('/booking', (req, res, next) => {
   next();
 });
 
+app.use('/admin', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,PUT');
+  next();
+});
+
 app.use('/api', userRouter);
 app.use('/transactions', flightsRouter)
 app.use('/booking', bookingRouter)
+app.use('/admin', adminRouter)
 
 module.exports = app;

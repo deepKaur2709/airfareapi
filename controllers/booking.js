@@ -22,7 +22,21 @@ const GetBookingsBasedOnFilter = function (req, res) {
     })
 };
 
+const DeleteBooking = function (req, res) {
+    const deleteresponse = booking.deleteOne({ _id: req.params.bookingid }).then((result) => {
+        return result
+    })
+    return res.status(200).json(deleteresponse)
+}
+
+const UpdateBooking = function (req, res) {
+    const updatedBooking = booking.findOneAndUpdate({ _id: req.params.bookingid }, req.body).then(resultbooking => { return resultbooking; })
+    return res.status(200).json(updatedBooking)
+}
+
 module.exports = {
     CreateBooking,
-    GetBookingsBasedOnFilter
+    GetBookingsBasedOnFilter,
+    DeleteBooking,
+    UpdateBooking
 }

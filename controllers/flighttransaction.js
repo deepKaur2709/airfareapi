@@ -32,7 +32,18 @@ const FlightTransactionByID = function (req, res) {
         })
 };
 
+const CreateFlightTransaction = function (req, res) {
+    flighttransactions.create(req.body, (err, userdata) => {
+        if (err) {
+            res.status(400).json(err);
+        } else {
+            res.status(200).json(userdata);
+        }
+    })
+};
+
 module.exports = {
     FlightTransactions,
-    FlightTransactionByID
+    FlightTransactionByID,
+    CreateFlightTransaction
 }

@@ -18,3 +18,4 @@ mongoose.connection.on('connected', () => {
    require('./customer');
    require('./flighttransaction');
    require('./booking');
+   require('./admin');
